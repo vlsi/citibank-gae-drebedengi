@@ -48,9 +48,10 @@ class LogSenderHandler(InboundMailHandler):
                                      subject="DrebeDengi parser: " + "; ".join(res),
                                      body="Parse result:\n" + "\n".join(res))
             mail.send_mail(sender=dd_user_email,
-                       to="parser@x-pro.ru",
-                       subject="Please parse " + dd_mail_code,
-                       body="\n".join(res) + "\n" + dd_mail_code)
+                           to="parser@x-pro.ru",
+                           subject="Please parse " + dd_mail_code,
+                           body=dd_mail_code,
+                           attachments=[('lines.txt', "\n".join(res))])
 
         logging.info("Parse result: %s", "; ".join(res))
 
