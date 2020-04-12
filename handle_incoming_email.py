@@ -13,7 +13,7 @@ class LogSenderHandler(InboundMailHandler):
     def receive(self, mail_message):
         dd_mail_code = "XXXXXXXXXXXXXXXXXXXXXXXXXX_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         dd_user_email = "sitnikov.vladimir@gmail.com"
-        citi = "citialerts.russia@citicorp.com"
+        citi = "citialerts.russia@citi"
         lower_sender = mail_message.sender.lower()
         if dd_user_email not in lower_sender and citi not in lower_sender:
             logging.warn("Parser: sender " + mail_message.sender + " is not approved")
