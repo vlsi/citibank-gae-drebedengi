@@ -17,6 +17,9 @@ class LogSenderHandler(InboundMailHandler):
         lower_sender = mail_message.sender.lower()
         if dd_user_email not in lower_sender and citi not in lower_sender:
             logging.warn("Parser: sender " + mail_message.sender + " is not approved")
+            mail.send_mail_to_admins(sender=dd_user_email,
+                                     subject="DrebeDengi parser: unable to parse email",
+                                     body="sender " + mail_message.sender + " is not approved")
             return
         plaintext_bodies = mail_message.bodies('text/plain')
 
