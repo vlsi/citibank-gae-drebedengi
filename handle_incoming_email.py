@@ -75,6 +75,9 @@ class LogSenderHandler(InboundMailHandler):
         if m:
             return self.result(u"зачисление", m.group("summ"), m.group("currency"), m.group("account"), m.group("operation"))
 
+        m = re.search(ur'По кредитной карте номер \*\*\s*(?P<account>\d+) была произведена операция:\s*Сумма: (?P<summ>[0-9.]+) (?P<currency>\w+)\s*$\s*Торговая точка: (?P<operation>.*?)\s*$\s*Дата операции: (?P<date>\d\d/\d\d/\d\d\d\d)', txt, re.MULTILINE)
+        if m:
+            return self.result(u"покупка", m.group("summ"), m.group("currency"), m.group("account"), m.group("operation"))
         return ""
 
     def result(self, op_type, summ, currency, account, category):
